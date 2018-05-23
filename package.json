@@ -1,7 +1,7 @@
 {
   "name": "sebamaster-movie-backend",
   "version": "1.0.0",
-  "description": "EBAMaster movie backend as a service",
+  "description": "SEBAMaster movie backend as a service",
   "main": "index.js",
   "private": true,
   "repository": {

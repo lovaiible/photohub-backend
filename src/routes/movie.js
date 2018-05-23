@@ -13,4 +13,4 @@ router.put('/:id', MovieController.update); // Update a movie by Id
 router.delete('/:id', MovieController.remove); // Delete a movie by Id
 
 
-module.exports = router;
+module.exports = router;	
