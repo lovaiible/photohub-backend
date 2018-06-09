@@ -9,6 +9,7 @@ const middlewares = require('./middlewares');
 const auth  = require('./routes/auth');
 const category = require('./routes/category');
 const locations = require('./routes/location');
+const profile = require('./routes/profile');
 
 const api = express();
 
