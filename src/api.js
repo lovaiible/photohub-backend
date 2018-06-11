@@ -32,6 +32,7 @@ api.get('/', (req, res) => {
 api.use('/auth'  , auth);
 api.use('/categories', category);
 api.use('/locations', locations);
+api.use('/profile', profile);
 
 
 

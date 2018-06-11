@@ -12,7 +12,7 @@ const ProfileSchema  = new mongoose.Schema({
     description: {
         type: String,
         required: true
-    },
+    } /*,
     picture: [String],
     minDate: {
         type: Date,
@@ -26,7 +26,7 @@ const ProfileSchema  = new mongoose.Schema({
         type: Schema.ObjectId,
         ref: 'Location',
         required: true
-    }
+    } */
 });
 
 ProfileSchema.set('versionKey', false);
