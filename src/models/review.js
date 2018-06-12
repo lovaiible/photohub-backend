@@ -17,7 +17,11 @@ const ReviewSchema  = new mongoose.Schema({
     rating: {
         type: Number,
         required: true
-    }
+    },
+	photographerId: {
+		type: String,
+        required: true
+	}
 });
 
 ReviewSchema.set('versionKey', false);

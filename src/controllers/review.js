@@ -12,7 +12,7 @@ const create = (req, res) => {
     ReviewModel.create(req.body)
         .then(review => res.status(201).json(review))
         .catch(error => res.status(500).json({
-            error: 'Internal server error',
+            error: 'Internal server error at create',
             message: error.message
         }));
 };
@@ -45,7 +45,7 @@ const update = (req, res) => {
     ReviewModel.findByIdAndUpdate(req.params.id,req.body,{ new: true, runValidators: true}).exec()
         .then(review => res.status(200).json(review))
         .catch(error => res.status(500).json({
-            error: 'Internal server error',
+            error: 'Internal server error at update',
             message: error.message
         }));
 };
@@ -60,20 +60,42 @@ const remove = (req, res) => {
 };
 
 const list  = (req, res) => {
-    ReviewModel.find({}).exec()
-        .then(reviews => res.status(200).json(reviews))
+    /*ReviewModel.find({}).exec()
+        .then(reviews => res.status(200).json(reviews.sort(function(a, b){return new Date(a.date) - new Date(b.date)}).reverse()))
         .catch(error => res.status(500).json({
             error: 'Internal server error',
             message: error.message
-        }));
+        }));*/
+	var pId = req.params.id;
+	console.log(pId);
+	ReviewModel.aggregate([
+			{$match: {photographerId: pId}},
+	]).exec()
+        .then(reviews => res.status(200).json(reviews.sort(function(a, b){return new Date(a.date) - new Date(b.date)}).reverse()))
+        .catch(error => res.status(500).json({
+            error: 'Internal server error',
+            message: error.message
+	}));
 };
 
-
+const getAvgRating  = (req, res) => {
+	var avgId = req.params.id;
+	ReviewModel.aggregate([
+			{$match: {photographerId: avgId}},
+			{$group:{_id: "$photographerId",avgRating: {$avg: "$rating"}}}
+	]).exec()
+        .then(avgRating => res.status(200).json(avgRating))
+        .catch(error => res.status(500).json({
+            error: 'Internal server error',
+            message: error.message
+    }));
+};
 
 module.exports = {
     create,
     read,
     update,
     remove,
-    list
+    list,
+	getAvgRating
 };
