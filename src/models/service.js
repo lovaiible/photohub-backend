@@ -25,5 +25,4 @@ const ServiceSchema  = new mongoose.Schema({
 ServiceSchema.set('versionKey', false);
 ServiceSchema.set('timestamps', true);
 
-// Export the Movie model
 module.exports = mongoose.model('Service', ServiceSchema);

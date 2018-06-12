@@ -8,7 +8,11 @@ const middlewares = require('./middlewares');
 
 const auth  = require('./routes/auth');
 const movie = require('./routes/movie');
-//const booking = require('.routes/booking')
+const booking = require('.routes/booking');
+const category = require('./routes/category');
+const locations = require('./routes/location');
+const profile = require('./routes/profile');
+
 
 const api = express();
 
@@ -23,15 +27,17 @@ api.use(middlewares.allowCrossDomain);
 // Basic route
 api.get('/', (req, res) => {
     res.json({
-        name: 'SEBA Master Movie Backend'
+        name: 'Photohub Backend'
     });
 });
 
 // API routes
 api.use('/auth'  , auth);
 api.use('/movies', movie);
-//api.use('/bookings', booking)
-
+api.use('/bookings', booking);
+api.use('/categories', category);
+api.use('/locations', locations);
+api.use('/profile', profile);
 
 
 module.exports = api;
