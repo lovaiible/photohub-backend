@@ -17,7 +17,7 @@ const create = (req, res) => {
 };
 
 const read   = (req, res) => {
-    BookingModel.findById(req.params.id).exec()
+    BookingModel.findById(req.params.id).exec() //id richtig?
         .then(bookingID => {
 
             if (!bookingID) return res.status(404).json({

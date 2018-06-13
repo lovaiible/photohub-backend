@@ -8,7 +8,7 @@ const middlewares = require('./middlewares');
 
 const auth  = require('./routes/auth');
 const movie = require('./routes/movie');
-const booking = require('.routes/booking');
+const booking = require('./routes/booking');
 const category = require('./routes/category');
 const locations = require('./routes/location');
 const profile = require('./routes/profile');
