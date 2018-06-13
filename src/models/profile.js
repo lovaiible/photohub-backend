@@ -1,9 +1,24 @@
 "use strict";
 
 const mongoose = require('mongoose');
+const Location = require("./location");
+const User = require("./user");
 
-// Define the category schema
+/*
+// define Location for photographer
+const LocationSchema  = new mongoose.Schema({
+    city: {
+        type: String,
+        required: true
+    },
+    country: {
+        type: String,
+        required: true
+    }
+});*/
 
+
+//define Profile schema as parent of review
 const ProfileSchema  = new mongoose.Schema({
     title: {
         type: String,
@@ -12,21 +27,17 @@ const ProfileSchema  = new mongoose.Schema({
     description: {
         type: String,
         required: true
-    } /*,
+    },
+    avatar: String,
     picture: [String],
     minDate: {
-        type: Date,
-        required: true
+        type: Date
     },
     maxDate: {
-        type: Date,
-        required: true
+        type: Date
     },
-    location: {
-        type: Schema.ObjectId,
-        ref: 'Location',
-        required: true
-    } */
+    location: Location.schema,
+    user: User.schema
 });
 
 ProfileSchema.set('versionKey', false);
