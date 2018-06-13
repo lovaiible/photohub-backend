@@ -33,7 +33,6 @@ const read   = (req, res) => {
             error: 'Internal Server Error',
             message: error.message
         }));
-
 };
 
 const update = (req, res) => {
