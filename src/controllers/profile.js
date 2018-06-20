@@ -48,25 +48,7 @@ const update = (req, res) => {
             message: error.message
         }));
 };
-/*
-const writeReview = (req, res) => {
-    ProfileModel.findById(req.params.id).exec()
-        .then(profile => {
-            if (!profile) return res.status(404).json({
-                error: 'Not Found',
-                message: `Photographer not found`
-            });
-            req.profile.review.push(req.body);
-            req.profile.save();
-            res.json(profile);
-        })
-        .catch(error => res.status(500).json({
-            error: "Internal Server Error",
-            message: error.message
-        }));
-};*/
-// necessary???
-/*
+
 const remove = (req, res) => {
     ProfileModel.findByIdAndRemove(req.params.id).exec()
         .then(() => res.status(200).json({message: `Profile with id${req.params.id} was deleted`}))
@@ -74,7 +56,7 @@ const remove = (req, res) => {
             error: 'Internal server error',
             message: error.message
         }));
-};*/
+};
 
 const list  = (req, res) => {
     ProfileModel.find({}).exec()
@@ -89,5 +71,6 @@ module.exports = {
     create,
     read,
     update,
-    list
+    list,
+    remove
 };

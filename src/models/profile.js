@@ -3,6 +3,7 @@
 const mongoose = require('mongoose');
 const Location = require("./location");
 const User = require("./user");
+const Category = require("./category");
 
 /*
 // define Location for photographer
@@ -37,7 +38,10 @@ const ProfileSchema  = new mongoose.Schema({
         type: Date
     },
     location: Location.schema,
-    user: User.schema
+    user: User.schema,
+    category: Category.schema,
+    price: Number,
+    serviceDescription: String
 });
 
 ProfileSchema.set('versionKey', false);
