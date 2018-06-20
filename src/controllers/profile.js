@@ -68,12 +68,21 @@ const list  = (req, res) => {
 };
 
 const query = (req, res) => {
-    ProfileModel.find({"location.city": req.params.city}).exec()
-        .then(profile => res.status(200).json(profile))
-        .catch(error => res.status(500).json({
-            error: 'Internal server error',
-            message: error.message
-        }));
+    if(req.query.category === 'All') {
+        ProfileModel.find({$and: [{'location.city': req.query.city}]}).exec()
+            .then(profile => res.status(200).json(profile))
+            .catch(error => res.status(500).json({
+                error: 'Internal server error',
+                message: error.message
+            }));
+    } else {
+        ProfileModel.find({$and: [{'location.city': req.query.city}, {'category.title': req.query.category}]}).exec()
+            .then(profile => res.status(200).json(profile))
+            .catch(error => res.status(500).json({
+                error: 'Internal server error',
+                message: error.message
+            }));
+    }
 }
 
 module.exports = {

@@ -5,21 +5,6 @@ const Location = require("./location");
 const User = require("./user");
 const Category = require("./category");
 
-/*
-// define Location for photographer
-const LocationSchema  = new mongoose.Schema({
-    city: {
-        type: String,
-        required: true
-    },
-    country: {
-        type: String,
-        required: true
-    }
-});*/
-
-
-//define Profile schema as parent of review
 const ProfileSchema  = new mongoose.Schema({
     title: {
         type: String,
@@ -50,6 +35,5 @@ const ProfileSchema  = new mongoose.Schema({
 
 ProfileSchema.set('versionKey', false);
 ProfileSchema.set('timestamps', true);
-
 
 module.exports = mongoose.model('Profile', ProfileSchema);
