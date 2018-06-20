@@ -9,7 +9,7 @@ const create = (req, res) => {
     });
 
     BookingModel.create(req.body)
-        .then(bookingID => res.status(201).json(bookingID))
+        .then(id => res.status(201).json(id))
         .catch(error => res.status(500).json({
             error: 'Internal server error',
             message: error.message
@@ -17,15 +17,15 @@ const create = (req, res) => {
 };
 
 const read   = (req, res) => {
-    BookingModel.findById(req.params.id).exec() //id richtig?
-        .then(bookingID => {
+    BookingModel.findById(req.params.id).exec()
+        .then(id => {
 
-            if (!bookingID) return res.status(404).json({
+            if (!id) return res.status(404).json({
                 error: 'Not Found',
                 message: `Booking not found`
             });
 
-            res.status(200).json(bookingID)
+            res.status(200).json(id)
 
         })
         .catch(error => res.status(500).json({

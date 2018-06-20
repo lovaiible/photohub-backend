@@ -5,14 +5,14 @@ const mongoose = require('mongoose');
 // Define the Booking schema
 
 const BookingSchema  = new mongoose.Schema({
-    /*bookingID: {
+    bookingID: {
         type: String,
         required: true
     },
-    price: {
-        type: Number,
+    pId: {
+        type: String,
         required: true
-    },*/
+    },
     date: {
         type: String,
         required: true
