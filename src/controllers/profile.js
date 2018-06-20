@@ -67,10 +67,20 @@ const list  = (req, res) => {
         }));
 };
 
+const query = (req, res) => {
+    ProfileModel.find({"location.city": req.params.city}).exec()
+        .then(profile => res.status(200).json(profile))
+        .catch(error => res.status(500).json({
+            error: 'Internal server error',
+            message: error.message
+        }));
+}
+
 module.exports = {
     create,
     read,
     update,
     list,
-    remove
+    remove,
+    query
 };
