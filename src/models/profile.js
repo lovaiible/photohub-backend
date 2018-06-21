@@ -1,8 +1,9 @@
 "use strict";
 
 const mongoose = require('mongoose');
-
-// Define the category schema
+const Location = require("./location");
+const User = require("./user");
+const Category = require("./category");
 
 const ProfileSchema  = new mongoose.Schema({
     title: {
@@ -12,25 +13,27 @@ const ProfileSchema  = new mongoose.Schema({
     description: {
         type: String,
         required: true
-    } /*,
-    picture: [String],
+    },
+    avatar: String,
+    picture: [{
+        _id: false,
+        original: String,
+        thumbnail: String
+    }],
     minDate: {
-        type: Date,
-        required: true
+        type: Date
     },
     maxDate: {
-        type: Date,
-        required: true
+        type: Date
     },
-    location: {
-        type: Schema.ObjectId,
-        ref: 'Location',
-        required: true
-    } */
+    location: Location.schema,
+    user: User.schema,
+    category: Category.schema,
+    price: Number,
+    serviceDescription: String
 });
 
 ProfileSchema.set('versionKey', false);
 ProfileSchema.set('timestamps', true);
-
 
 module.exports = mongoose.model('Profile', ProfileSchema);

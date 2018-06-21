@@ -2,7 +2,6 @@
 
 const mongoose = require('mongoose');
 
-// Define the movie schema
 
 const ReviewSchema  = new mongoose.Schema({
     name: {
@@ -10,12 +9,16 @@ const ReviewSchema  = new mongoose.Schema({
         required: true
     },
     date: {
-        type: String,
+        type: Date,
         required: true
     },
     text: String,
     rating: {
         type: Number,
+        required: true
+    },
+    photographerId: {
+        type: String,
         required: true
     }
 });
@@ -23,5 +26,4 @@ const ReviewSchema  = new mongoose.Schema({
 ReviewSchema.set('versionKey', false);
 ReviewSchema.set('timestamps', true);
 
-// Export the Movie model
 module.exports = mongoose.model('Review', ReviewSchema);

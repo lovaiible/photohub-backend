@@ -11,12 +11,10 @@ const UserSchema  = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     }
 });
 
 UserSchema.set('versionKey', false);
 
-// Export the Movie model
 module.exports = mongoose.model('User', UserSchema);
