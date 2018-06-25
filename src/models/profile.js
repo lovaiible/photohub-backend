@@ -15,11 +15,6 @@ const ProfileSchema  = new mongoose.Schema({
         required: true
     },
     avatar: String,
-    picture: [{
-        _id: false,
-        original: String,
-        thumbnail: String
-    }],
     minDate: {
         type: Date
     },
