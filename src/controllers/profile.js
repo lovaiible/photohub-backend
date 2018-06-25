@@ -67,10 +67,38 @@ const list  = (req, res) => {
         }));
 };
 
+const query = (req, res) => {
+    let isoString = new Date(req.query.date).toISOString();
+
+    if(req.query.category === 'All') {
+        ProfileModel.find({$and: [
+                {'location.city': req.query.city},
+                /*{'createdAt' : { $gte : new Date(isoString) } }*/
+            ]}).exec()
+            .then(profile => res.status(200).json(profile))
+            .catch(error => res.status(500).json({
+                error: 'Internal server error',
+                message: error.message
+            }));
+    } else {
+        ProfileModel.find({$and: [
+                {'location.city': req.query.city},
+                {'category.title': req.query.category},
+                /*{'createdAt' : { $gte : new Date(isoString) } }*/
+            ]}).exec()
+            .then(profile => res.status(200).json(profile))
+            .catch(error => res.status(500).json({
+                error: 'Internal server error',
+                message: error.message
+            }));
+    }
+}
+
 module.exports = {
     create,
     read,
     update,
+    list,
     remove,
-    list
+    query
 };

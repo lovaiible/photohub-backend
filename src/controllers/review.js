@@ -58,14 +58,43 @@ const remove = (req, res) => {
             message: error.message
         }));
 };
+const list  = (req, res) => {
+    /*ReviewModel.find({}).exec()
+        .then(reviews => res.status(200).json(reviews.sort(function(a, b){return new Date(a.date) - new Date(b.date)}).reverse()))
+        .catch(error => res.status(500).json({
+            error: 'Internal server error',
+            message: error.message
+        }));*/
+    var pId = req.params.id;
+    //console.log(pId);
+    ReviewModel.aggregate([
+        {$match: {photographerId: pId}},
+    ]).exec()
+        .then(reviews => res.status(200).json(reviews.sort(function(a, b){return new Date(a.date) - new Date(b.date)}).reverse()))
+        .catch(error => res.status(500).json({
+            error: 'Internal server error',
+            message: error.message
+        }));
+};
 
-
-
-
+const getAvgRating  = (req, res) => {
+    var avgId = req.params.id;
+    ReviewModel.aggregate([
+        {$match: {photographerId: avgId}},
+        {$group:{_id: "$photographerId",avgRating: {$avg: "$rating"}}}
+    ]).exec()
+        .then(avgRating => res.status(200).json(avgRating))
+        .catch(error => res.status(500).json({
+            error: 'Internal server error',
+            message: error.message
+        }));
+};
 
 module.exports = {
     create,
     read,
     update,
-    remove
+    remove,
+    list,
+    getAvgRating
 };
