@@ -1,5 +1,7 @@
 "use strict";
 
+var ObjectId = require('mongodb').ObjectID;
+
 const ProfileModel = require('../models/profile');
 
 const create = (req, res) => {
@@ -16,7 +18,7 @@ const create = (req, res) => {
         }));
 };
 
-const read   = (req, res) => {
+const read = (req, res) => {
     ProfileModel.findById(req.params.id).exec()
         .then(profile => {
 
@@ -41,7 +43,7 @@ const update = (req, res) => {
         message: 'The request body is empty'
     });
 
-    ProfileModel.findByIdAndUpdate(req.params.id,req.body,{ new: true, runValidators: true}).exec()
+    ProfileModel.findByIdAndUpdate(req.params.id, req.body, {new: true, runValidators: true}).exec()
         .then(profile => res.status(200).json(profile))
         .catch(error => res.status(500).json({
             error: 'Internal server error',
@@ -58,7 +60,7 @@ const remove = (req, res) => {
         }));
 };
 
-const list  = (req, res) => {
+const list = (req, res) => {
     ProfileModel.find({}).exec()
         .then(profile => res.status(200).json(profile))
         .catch(error => res.status(500).json({
@@ -70,22 +72,26 @@ const list  = (req, res) => {
 const query = (req, res) => {
     let isoString = new Date(req.query.date).toISOString();
 
-    if(req.query.category === 'All') {
-        ProfileModel.find({$and: [
+    if (req.query.category === 'All') {
+        ProfileModel.find({
+            $and: [
                 {'location.city': req.query.city},
                 /*{'createdAt' : { $gte : new Date(isoString) } }*/
-            ]}).exec()
+            ]
+        }).exec()
             .then(profile => res.status(200).json(profile))
             .catch(error => res.status(500).json({
                 error: 'Internal server error',
                 message: error.message
             }));
     } else {
-        ProfileModel.find({$and: [
+        ProfileModel.find({
+            $and: [
                 {'location.city': req.query.city},
                 {'category.title': req.query.category},
                 /*{'createdAt' : { $gte : new Date(isoString) } }*/
-            ]}).exec()
+            ]
+        }).exec()
             .then(profile => res.status(200).json(profile))
             .catch(error => res.status(500).json({
                 error: 'Internal server error',
@@ -94,11 +100,22 @@ const query = (req, res) => {
     }
 }
 
+const getUser = (req, res) => {
+    ProfileModel.find({'user._id' : ObjectId(req.params.id)
+    }).exec()
+        .then(profile => res.status(200).json(profile))
+        .catch(error => res.status(500).json({
+            error: 'Internal server error',
+            message: error.message
+        }));
+}
+
 module.exports = {
     create,
     read,
     update,
     list,
     remove,
-    query
+    query,
+    getUser
 };
