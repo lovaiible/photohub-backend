@@ -12,6 +12,6 @@ router.get('/:id', ReviewController.read); // Read a movie by Id
 router.put('/:id', ReviewController.update); // Update a movie by Id
 router.delete('/:id', ReviewController.remove); // Delete a movie by Id
 router.get('/getAvgRating/:id', ReviewController.getAvgRating); // Get average photographer rating
-
+router.get('/checkAlreadyRated/:id/:userid', ReviewController.checkAlreadyRated); // Get average photographer rating
 module.exports = router;
 	

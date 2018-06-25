@@ -90,11 +90,28 @@ const getAvgRating  = (req, res) => {
         }));
 };
 
+const checkAlreadyRated  = (req, res) => {
+    var avgId = req.params.id;
+	var userid = req.params.userid;
+	console.log(userid);
+    ReviewModel.aggregate([
+        {$match: {photographerId: avgId}},
+		{$match: {userId: userid}},
+        {$group:{_id: "$photographerId",avgRating: {$avg: "$rating"}}}
+    ]).exec()
+        .then(alreadyRated => res.status(200).json(alreadyRated))
+        .catch(error => res.status(500).json({
+            error: 'Internal server error',
+            message: error.message
+        }));
+};
+
 module.exports = {
     create,
     read,
     update,
     remove,
     list,
-    getAvgRating
+    getAvgRating,
+	checkAlreadyRated
 };
