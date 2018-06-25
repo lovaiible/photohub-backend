@@ -9,7 +9,7 @@ const ReviewSchema  = new mongoose.Schema({
         required: true
     },
     date: {
-        type: Date,
+        type: String,
         required: true
     },
     text: String,
@@ -18,6 +18,10 @@ const ReviewSchema  = new mongoose.Schema({
         required: true
     },
     photographerId: {
+        type: String,
+        required: true
+    },
+	userId: {
         type: String,
         required: true
     }
