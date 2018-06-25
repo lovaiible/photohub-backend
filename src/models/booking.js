@@ -23,6 +23,12 @@ const BookingSchema  = new mongoose.Schema({
     },
     addInfo: {
         type: String
+    },
+    price: {
+        type: Number
+    },
+    pName: {
+        type: pName
     }
 });
 
