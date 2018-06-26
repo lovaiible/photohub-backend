@@ -21,6 +21,11 @@ const ProfileSchema  = new mongoose.Schema({
     maxDate: {
         type: Date
     },
+    gallery: [{
+        _id: false,
+        original: String,
+        thumbnail: String
+    }],
     location: Location.schema,
     user: User.schema,
     category: Category.schema,
