@@ -97,7 +97,7 @@ const checkAlreadyRated  = (req, res) => {
     ReviewModel.aggregate([
         {$match: {photographerId: avgId}},
 		{$match: {userId: userid}},
-        {$group:{_id: "$photographerId",avgRating: {$avg: "$rating"}}}
+        {$group:{_id: "$photographerId"}}
     ]).exec()
         .then(alreadyRated => res.status(200).json(alreadyRated))
         .catch(error => res.status(500).json({
