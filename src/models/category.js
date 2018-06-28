@@ -13,7 +13,7 @@ const CategorySchema  = new mongoose.Schema({
         type: String
     },
     slug: {
-        type: String
+            type: String
     }
 });
 

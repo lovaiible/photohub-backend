@@ -14,7 +14,10 @@ const ProfileSchema  = new mongoose.Schema({
         type: String,
         required: true
     },
-    avatar: String,
+    avatar: {
+        type: String,
+        default: ""
+    },
     minDate: {
         type: Date
     },
@@ -26,8 +29,14 @@ const ProfileSchema  = new mongoose.Schema({
         original: String,
         thumbnail: String
     }],
-    location: Location.schema,
-    user: User.schema,
+    location: {
+        city: String,
+        country: String
+    },
+    user: {
+        id: String,
+        username: String,
+    },
     category: Category.schema,
     price: Number,
     serviceDescription: String
