@@ -14,20 +14,29 @@ const ProfileSchema  = new mongoose.Schema({
         type: String,
         required: true
     },
-    avatar: String,
-    picture: [{
-        _id: false,
-        original: String,
-        thumbnail: String
-    }],
+    avatar: {
+        type: String,
+        default: ""
+    },
     minDate: {
         type: Date
     },
     maxDate: {
         type: Date
     },
-    location: Location.schema,
-    user: User.schema,
+    gallery: [{
+        _id: false,
+        original: String,
+        thumbnail: String
+    }],
+    location: {
+        city: String,
+        country: String
+    },
+    user: {
+        id: String,
+        username: String,
+    },
     category: Category.schema,
     price: Number,
     serviceDescription: String
