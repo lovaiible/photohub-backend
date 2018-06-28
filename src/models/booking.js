@@ -25,9 +25,9 @@ const BookingSchema  = new mongoose.Schema({
         type: String
     },
     price: {
-        type: Number
+        type: Number,
+        required: true
     },
-
     pName: {
         type: String,
         required: true
