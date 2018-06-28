@@ -76,7 +76,8 @@ const query = (req, res) => {
         ProfileModel.find({
             $and: [
                 {'location.city': req.query.city},
-                /*{'createdAt' : { $gte : new Date(isoString) } }*/
+                {'minDate' : { $lte : new Date(isoString) } },
+                {'maxDate' : { $gte : new Date(isoString) } }
             ]
         }).exec()
             .then(profile => res.status(200).json(profile))
@@ -89,7 +90,8 @@ const query = (req, res) => {
             $and: [
                 {'location.city': req.query.city},
                 {'category.title': req.query.category},
-                /*{'createdAt' : { $gte : new Date(isoString) } }*/
+                {'minDate' : { $lte : new Date(isoString) } },
+                {'maxDate' : { $gte : new Date(isoString) } }
             ]
         }).exec()
             .then(profile => res.status(200).json(profile))
