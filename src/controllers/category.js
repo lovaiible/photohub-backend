@@ -67,10 +67,20 @@ const list  = (req, res) => {
         }));
 };
 
+const getByName  = (req, res) => {
+    CategoryModel.find({'title': req.params.name}).exec()
+        .then(location => res.status(200).json(location))
+        .catch(error => res.status(500).json({
+            error: 'Internal server error',
+            message: error.message
+        }));
+};
+
 module.exports = {
     create,
     read,
     update,
     remove,
-    list
+    list,
+    getByName
 };

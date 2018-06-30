@@ -29,14 +29,8 @@ const ProfileSchema  = new mongoose.Schema({
         original: String,
         thumbnail: String
     }],
-    location: {
-        city: String,
-        country: String
-    },
-    user: {
-        id: String,
-        username: String,
-    },
+    location: Location.schema,
+    user: User.schema,
     category: Category.schema,
     price: Number,
     serviceDescription: String
