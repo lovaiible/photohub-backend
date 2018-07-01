@@ -1,1 +1,1 @@
-{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"photodb.users"},{"v":2,"unique":true,"key":{"password":1},"name":"password_1","ns":"photodb.users","background":true}],"uuid":"781be27764644635be0f64c4c679d2e1"}
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"photodb.users"},{"v":2,"unique":true,"key":{"password":1},"name":"password_1","ns":"photodb.users","background":true}],"uuid":"13d0b11b8356462da435bf9ee4d2892b"}
