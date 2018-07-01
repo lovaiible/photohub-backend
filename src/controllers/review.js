@@ -66,7 +66,6 @@ const list  = (req, res) => {
             message: error.message
         }));*/
     var pId = req.params.id;
-    //console.log(pId);
     ReviewModel.aggregate([
         {$match: {photographerId: pId}},
     ]).exec()

@@ -46,7 +46,7 @@ const update = (req, res) => {
     ProfileModel.findByIdAndUpdate(req.params.id, req.body, {new: true, runValidators: true}).exec()
         .then(profile => res.status(200).json(profile))
         .catch(error => res.status(500).json({
-            error: 'Internal server error',
+            error: 'Internal server error by profile update',
             message: error.message
         }));
 };
